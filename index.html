@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8" />
+<head>
+	<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>PDE</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
@@ -13966,12 +13967,58 @@ a.anchor-link {
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --></head>
+    <!-- End of mathjax configuration -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+	crossorigin="anonymous"></script>
+
+<script>
+$(document).ready(function() {          
+    $('.code_shower').on('click',function(){
+	var header = $(this);
+	var codecell = $(this).next()
+        codecell.slideToggle(0, function() {
+		if (codecell.is(':hidden')) {
+			header.text("Show Code");
+			header.css("border-radius", "2px 2px 2px 2px");
+		} else {
+			header.text("Hide Code");
+			header.css("border-radius", "2px 2px 0px 0px")
+		}
+	});
+    });
+    $('.hidden_default').next().hide();
+});
+</script>
+
+<style>
+div.input {
+	flex-direction: column !important;
+}
+
+div.input_area {
+	border-radius: 0px 0px 2px 2px;
+}
+
+div.code_shower {
+	background: lightgray;
+	padding: 5px 10px;
+	cursor: pointer;
+	border-radius: 2px 2px 0px 0px;
+}
+
+</style>
+</head>
 <body class="jp-Notebook" data-jp-theme-light="true" data-jp-theme-name="JupyterLab Light">
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+
+
+    	<div class="code_shower hidden_default">Show Code</div>
+
+
+
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
@@ -13986,19 +14033,15 @@ a.anchor-link {
 
      </div>
 </div>
+
 </div>
 </div>
 
 <div class="jp-Cell-outputWrapper">
 
-
 <div class="jp-OutputArea jp-Cell-outputArea">
 
 <div class="jp-OutputArea-child">
-
-    
-    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output " data-mime-type="text/html">
@@ -14012,8 +14055,7 @@ a.anchor-link {
 </div>
 
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Introduzione-all'equazione-di-Fokker-Planck">Introduzione all'equazione di Fokker-Planck<a class="anchor-link" href="#Introduzione-all'equazione-di-Fokker-Planck">&#182;</a></h1><h2 id="Generalit%C3%A0">Generalit&#224;<a class="anchor-link" href="#Generalit%C3%A0">&#182;</a></h2><p>L'equazione di Fokker-Planck (<strong>FP</strong>) è un'equazione differenziale alle
 derivate parziali che descrive l'evoluzione temporale della funzione di
 densità di probabilità (<em>PDF</em>) di un'osservabile (solitamente la
@@ -14036,8 +14078,7 @@ $u_0=u(\mathbf{x}_0, 0)$ sarà: $$\int u(\textbf{x}) d\textbf{x}=1$$</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Sistema-non-lineare-di-Van-der-Pol">Sistema non lineare di Van der Pol<a class="anchor-link" href="#Sistema-non-lineare-di-Van-der-Pol">&#182;</a></h2><p>L'oscillatore di Van der Pol è un oscillatore con un dumping non-lineare
 che evolve in accordo con la seguente equazione differenziale ordinaria
 del secondo ordine: $$\label{ode1}
@@ -14070,8 +14111,7 @@ $D&gt;0$.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Discretizzazione-e-metodi-di-risoluzione">Discretizzazione e metodi di risoluzione<a class="anchor-link" href="#Discretizzazione-e-metodi-di-risoluzione">&#182;</a></h1><p>Essendo la <strong>FP</strong> una <em>PDE</em> è possibile risolverla analiticamente solo
 in alcuni casi particolari. L'obiettivo del seguente lavoro è quello di
 studiare i risultati numerici ottenuti applicando alcuni schemi di
@@ -14097,8 +14137,7 @@ $u_{ij}^n$.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Metodo-esplicito">Metodo esplicito<a class="anchor-link" href="#Metodo-esplicito">&#182;</a></h2><p>L'uso di un metodo esplicito, come il Forward Time Centered Space
 (<em>FTCS</em>), consente di risolvere direttamente l'equazione differenziale
 alle derivate parziali senza incorrere in costi computazionali elevati.
@@ -14148,8 +14187,7 @@ fluttuazioni spurie (<em>CN</em>).</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Metodo-implicito">Metodo implicito<a class="anchor-link" href="#Metodo-implicito">&#182;</a></h2><p>Uno schema <em>fully implicit</em> è più stabile rispetto ad uno esplicito. Un
 esempio è il <em>BTCS</em> che nel caso in esame
 <a href="#FPVdP">[FPVdP]</a>{reference-type="eqref" reference="FPVdP"} prevede la
@@ -14185,8 +14223,7 @@ $O(\Delta t)+O(\Delta x^2)$.</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Metodo-Crank-Nicolson">Metodo Crank-Nicolson<a class="anchor-link" href="#Metodo-Crank-Nicolson">&#182;</a></h2><p>Lo schema Crank-Nicolson (<em>CN</em>) è un metodo alle differenze finite
 ottenuto facendo un <em>averaging</em> tra uno schema implicito ed uno
 esplicito. È uno schema implicito nel tempo con accuratezza pari a
@@ -14223,8 +14260,7 @@ associate. Si può ovviare a questo inconveniente utilizzando tecniche di
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Alternate-Direction-Implicit-Method">Alternate Direction Implicit Method<a class="anchor-link" href="#Alternate-Direction-Implicit-Method">&#182;</a></h2><p>L'<em>Alternate Direction Implicit Method</em>, o <em>ADI</em> è uno schema alle
 differenze finite in cui gli step in ogni direzione sono risolti
 separatamente, e in ciascuno step si costruisce una struttura implicita
@@ -14278,8 +14314,7 @@ limite.">{#ADI width="\textwidth"}</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Caso-di-drift-periodico">Caso di drift periodico<a class="anchor-link" href="#Caso-di-drift-periodico">&#182;</a></h2><p>Una volta costruito lo schema <em>ADI</em> è stato possibile inserire una
 funzione periodica nel drift della funzione $f(x,y,t)$, ottenendo come
 risultato una <em>PDF</em> che si contrae ed espande sul ciclo limite con una
@@ -14302,8 +14337,7 @@ width="\textwidth"}</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Confronto-con-il-ciclo-limite">Confronto con il ciclo limite<a class="anchor-link" href="#Confronto-con-il-ciclo-limite">&#182;</a></h2><p>Di seguito si effettua un rapido confronto tra la soluzione dell'<em>ODE</em>
 in equazione <a href="#ode1">[ode1]</a>{reference-type="eqref" reference="ode1"}
 e la soluzione della Fokker-Planck associata, con lo stesso parametro
@@ -14325,8 +14359,7 @@ width="\textwidth"}</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h2 id="Condizioni-iniziali-random">Condizioni iniziali random<a class="anchor-link" href="#Condizioni-iniziali-random">&#182;</a></h2><p>Di seguito un esempio di come l'imposizione di una condizione iniziale
 in cui tutti gli elementi dell'array bidimensionale $u(x, y, 0)$ sono
 presi random da una distribuzione uniforme, faccia evolvere il sistema
@@ -14342,8 +14375,7 @@ stabile.">{#ADI periodic width="\textwidth"}</p>
 
 </div>
 </div>
-<div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<div class="jp-Cell-inputWrapper"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <h1 id="Convergenza,-consistenza-e-stabilit%C3%A0">Convergenza, consistenza e stabilit&#224;<a class="anchor-link" href="#Convergenza,-consistenza-e-stabilit%C3%A0">&#182;</a></h1><p>Le equazioni differenziali alle derivate parziali sono di rado
 risolvibili analiticamente. Una volta approssimata la <em>PDE</em> è possibile
 conoscere in che modo l'equazione alle differenze finite approssima
@@ -14523,7 +14555,12 @@ Science+Business Media</em>, 1995
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+
+
+    	<div class="code_shower hidden_default">Show Code</div>
+
+
+
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span> 
@@ -14531,6 +14568,7 @@ Science+Business Media</em>, 1995
 
      </div>
 </div>
+
 </div>
 </div>
 
