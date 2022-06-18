@@ -1,0 +1,1 @@
+jupyter nbconvert PDE.ipynb --to html --no-input --template mytmpl/ --stdout > index.html
