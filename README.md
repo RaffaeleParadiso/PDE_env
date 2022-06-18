@@ -3,4 +3,4 @@
 
 View in [Github Pages](https://raffaeleparadiso.github.io/Partial_differential_equations/) 
 or directly on [Github](https://github.com/RaffaeleParadiso/Partial_differential_equations)
-* [Your GitHub Pages URL and adding preview to your README.md](/least-github-pages/add-github-pages-preview.html)
+* [Your GitHub Pages URL and adding preview to your README.md](//Partial_differential_equations/blob/main/index.html)
