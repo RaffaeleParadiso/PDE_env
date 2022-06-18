@@ -3,4 +3,3 @@
 
 View in [Github Pages](https://raffaeleparadiso.github.io/Partial_differential_equations/) 
 or directly on [Github](https://github.com/RaffaeleParadiso/Partial_differential_equations)
-* [Preview](/index.html)
